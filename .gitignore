@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.env
+.DS_Store
+# 源码保护 — 不上传原始可读代码
+src/

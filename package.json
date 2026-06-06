@@ -1,0 +1,17 @@
+{
+  "name": "word-root-map",
+  "version": "1.4.0",
+  "description": "词根星图 — 艾宾浩斯遗忘曲线单词记忆工具",
+  "private": true,
+  "scripts": {
+    "build": "node build.js",
+    "serve": "serve . -p 3456 --no-clipboard",
+    "dev": "serve . -p 3456 --no-clipboard"
+  },
+  "keywords": ["word-root", "ebbinghaus", "memory", "english-learning"],
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "javascript-obfuscator": "^5.4.3",
+    "serve": "^14.2.0"
+  }
+}
