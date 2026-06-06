@@ -15,40 +15,34 @@ const jsCode = scriptMatch[1];
 const before = source.substring(0, scriptMatch.index + 8); // 包括 <script>
 const after = source.substring(scriptMatch.index + scriptMatch[0].length); // </script> 之后
 
-// 混淆 JS
+// 混淆 JS（极简模式：仅变量重命名 + 字符串编码，保证功能正常）
 const result = JavaScriptObfuscator.obfuscate(jsCode, {
   compact: true,
-  controlFlowFlattening: true,
-  controlFlowFlatteningThreshold: 0.75,
-  deadCodeInjection: true,
-  deadCodeInjectionThreshold: 0.4,
-  debugProtection: true,
-  debugProtectionInterval: 2000,
-  disableConsoleOutput: true,
+  controlFlowFlattening: false,
+  deadCodeInjection: false,
+  debugProtection: false,
+  disableConsoleOutput: false,
   identifierNamesGenerator: "hexadecimal",
   log: false,
-  numbersToExpressions: true,
+  numbersToExpressions: false,
   renameGlobals: false,
-  selfDefending: true,
+  selfDefending: false,
   simplify: true,
-  splitStrings: true,
-  splitStringsChunkLength: 10,
+  splitStrings: false,
   stringArray: true,
   stringArrayCallsTransform: true,
   stringArrayEncoding: ["base64"],
   stringArrayIndexShift: true,
   stringArrayRotate: true,
   stringArrayShuffle: true,
-  stringArrayWrappersCount: 2,
-  stringArrayWrappersChainedCalls: true,
-  stringArrayWrappersType: "function",
-  stringArrayThreshold: 0.75,
-  transformObjectKeys: true,
+  stringArrayWrappersCount: 1,
+  stringArrayThreshold: 0.5,
+  transformObjectKeys: false,
   unicodeEscapeSequence: false,
 });
 
 // 拼接
-const protected = before + "\n" + result.getObfuscatedCode() + "\n" + after;
+const protected = before + "\n" + result.getObfuscatedCode() + "\n</script>" + after;
 
 fs.writeFileSync("index.html", protected, "utf8");
 console.log("✓ Build complete: index.html (protected)");
